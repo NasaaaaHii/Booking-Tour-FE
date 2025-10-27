@@ -38,7 +38,14 @@ export default function LoginPage() {
 
     const result = await login(formData.email, formData.password)
     if (result.success) {
-      navigate("/tours")
+      console.log("Login successful user: ", result.user)
+      if(result.user.roles[0] === "ADMIN") {
+        console.log("Redicecting to admin dashboard...");
+        navigate("/admin/dashboard", {replace: true})
+      } else {
+        console.log("Redirecting to home...")
+        navigate("/", {replace: true})
+      }
     }
   }
 

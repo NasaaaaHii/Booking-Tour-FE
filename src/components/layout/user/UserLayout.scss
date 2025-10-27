@@ -1,0 +1,10 @@
+.user-layout {
+  background: var(--background-primary); // optional
+}
+
+.user-container {
+  max-width: 1200px;   // giới hạn width
+  margin: 0 auto;      // căn giữa
+  padding: 0 1.5rem;   // padding 2 bên
+  box-sizing: border-box;
+}

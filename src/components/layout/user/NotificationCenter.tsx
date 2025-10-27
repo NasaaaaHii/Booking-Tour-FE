@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useNotification } from "../../features/notification/hooks/useNotification"
-import NotificationItem from "../../features/notification/components/NotificationItem"
-import Modal from "../common/Modal"
+import { useNotification } from "../../../features/notification/hooks/useNotification"
+import NotificationItem from "../../../features/notification/components/NotificationItem"
+import Modal from "../../common/Modal"
 import "./NotificationCenter.scss"
 
 export default function NotificationCenter() {

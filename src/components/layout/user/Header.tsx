@@ -1,14 +1,15 @@
-"use client"
+"use client";
 
-import { Link } from "react-router-dom"
-import { useState } from "react"
-import "./Header.scss"
-import NotificationCenter from "./NotificationCenter"
+import { Link } from "react-router-dom";
+import {useState } from "react";
+import "./Header.scss";
+import NotificationCenter from ".././user/NotificationCenter";
+import { useAuthContext } from "../../../context/AuthContext";
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const isAuthenticated = !!localStorage.getItem("token")
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logout } = useAuthContext();
+  console.log("header user: ", user)
   return (
     <header className="header">
       <div className="header-container">
@@ -17,7 +18,10 @@ export default function Header() {
           <span className="logo-text">TourBook</span>
         </Link>
 
-        <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button
+          className="menu-toggle"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
           ☰
         </button>
 
@@ -36,19 +40,13 @@ export default function Header() {
           </Link>
 
           <div className="nav-auth">
-            {isAuthenticated ? (
+            {user ? (
               <>
                 <NotificationCenter />
                 <Link to="/bookings" className="nav-link">
                   Đặt chỗ của tôi
                 </Link>
-                <button
-                  className="btn-logout"
-                  onClick={() => {
-                    localStorage.removeItem("token")
-                    window.location.href = "/"
-                  }}
-                >
+                <button className="btn-logout" onClick={logout}>
                   Đăng xuất
                 </button>
               </>
@@ -66,5 +64,5 @@ export default function Header() {
         </nav>
       </div>
     </header>
-  )
+  );
 }
