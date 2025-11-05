@@ -14,7 +14,11 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",                   
+    "paths": {
+      "@/*": ["./*"]                  
+    }
   },
-  "include": ["src"]
+  "include": ["src", "components", "lib"]
 }

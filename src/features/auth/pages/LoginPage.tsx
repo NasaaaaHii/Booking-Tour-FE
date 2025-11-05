@@ -41,7 +41,7 @@ export default function LoginPage() {
       console.log("Login successful user: ", result.user)
       if(result.user.roles[0] === "ADMIN") {
         console.log("Redicecting to admin dashboard...");
-        navigate("/admin/dashboard", {replace: true})
+        navigate("/admin/overview", {replace: true})
       } else {
         console.log("Redirecting to home...")
         navigate("/", {replace: true})
