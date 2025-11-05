@@ -14,11 +14,11 @@ import BookingList from "../features/booking/pages/BookingList";
 import BookingDetail from "../features/booking/pages/BookingDetail";
 import PaymentPage from "../features/payment/pages/PaymentPage";
 
-import { DashboardPage } from "../features/admin/pages/Dashboard";
-import { UserManagementPage } from "../features/admin/pages/UserManagement";
-import { TourManagementPage } from "../features/admin/pages/TourManagement";
-import { BookingManagementPage } from "../features/admin/pages/BookingManagement";
-import { ReportsPage } from "../features/admin/pages/Reports";
+import  {OverviewPage}  from "../features/admin/overview/pages/Overview";
+import { UserManagementPage } from "../features/admin/managementUsers/pages/UserManagement";
+import { TourManagementPage } from "../features/admin/manegementTours/pages/TourManagement";
+import { BookingManagementPage } from "../features/admin/managementBookings/pages/BookingManagement";
+import { ReportsPage } from "../features/admin/managementReports/pages/Reports";
 import NotFound from "../pages/NotFound";
 
 export default function AppRoutes() {
@@ -107,56 +107,24 @@ export default function AppRoutes() {
       />
 
       {/* ADMIN ROUTES */}
+      {/* ADMIN ROUTES */}
       <Route
-        path="/admin/dashboard"
+        path="/admin"
         element={
           <AdminRoute>
-            <AdminLayout>
-              <DashboardPage />
-            </AdminLayout>
+            <AdminLayout />
           </AdminRoute>
         }
-      />
-      <Route
-        path="/admin/users"
-        element={
-          <AdminRoute>
-            <AdminLayout>
-              <UserManagementPage />
-            </AdminLayout>
-          </AdminRoute>
-        }
-      />
-      <Route
-        path="/admin/tours"
-        element={
-          <AdminRoute>
-            <AdminLayout>
-              <TourManagementPage />
-            </AdminLayout>
-          </AdminRoute>
-        }
-      />
-      <Route
-        path="/admin/bookings"
-        element={
-          <AdminRoute>
-            <AdminLayout>
-              <BookingManagementPage />
-            </AdminLayout>
-          </AdminRoute>
-        }
-      />
-      <Route
-        path="/admin/reports"
-        element={
-          <AdminRoute>
-            <AdminLayout>
-              <ReportsPage />
-            </AdminLayout>
-          </AdminRoute>
-        }
-      />
+      >
+        {/* Route mặc định (redirect hoặc overview) */}
+        <Route index element={<OverviewPage />} />
+
+        <Route path="overview" element={<OverviewPage />} />
+        <Route path="managementUsers" element={<UserManagementPage />} />
+        <Route path="managementTours" element={<TourManagementPage />} />
+        <Route path="managementBookings" element={<BookingManagementPage />} />
+        <Route path="managementReports" element={<ReportsPage />} />
+      </Route>
 
       {/* FALLBACK */}
       <Route path="*" element={<NotFound />} />

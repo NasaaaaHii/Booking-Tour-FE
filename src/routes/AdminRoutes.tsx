@@ -3,17 +3,24 @@ import { Navigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 
 interface AdminRoutePage {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
-const AdminRoute = ({children}: AdminRoutePage) => {
-    const {user} = useAuthContext();
+const AdminRoute = ({ children }: AdminRoutePage) => {
+  const { user, loading } = useAuthContext();
 
-    if (!user) return <Navigate to={"/login"} />
+  // Khi context đang load dữ liệu từ localStorage
+  if (loading) {
+    return <div className="text-center text-gray-400 mt-10">Đang tải...</div>;
+  }
 
-    if(!user.roles?.includes("ADMIN")) return <Navigate to={"/"} />
+  // Sau khi load xong mà vẫn chưa có user → redirect login
+  if (!user) return <Navigate to="/login" replace />;
 
-    return <>{children}</>
-}
+  // Nếu user không phải admin
+  if (!user.roles?.includes("ADMIN")) return <Navigate to="/" replace />;
+
+  return <>{children}</>;
+};
 
 export default AdminRoute;
